@@ -17,6 +17,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function favourites(){
+        return $this->hasMany(Favourite::class);
+    }
+
     protected $fillable = [
         'name',
         'email',

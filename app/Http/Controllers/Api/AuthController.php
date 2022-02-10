@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function inspeksi()
+    {
+        return response(['success' => true]);
+    }
+
     public function index(){
         return response(['data' => User::all()]);
     }
