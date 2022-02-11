@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class FavouriteFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,8 +15,11 @@ class FavouriteFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' =>  1,
-            'product_id' =>  rand(1, 50),
+            'user_id' => null,
+            'product_id' => rand(1, 50),
+            'content' => null,
+            'path' => 'storage/images/wortel.jpg',
+            'ext' => 'jpg',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ];

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -35,6 +36,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'promo',
             'due_date' => '2022-02-21',
             'market_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('categories')->insert([
@@ -42,6 +45,8 @@ class DatabaseSeeder extends Seeder
             'type' => 'promo',
             'due_date' => '2022-02-21',
             'market_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('categories')->insert([
@@ -49,6 +54,20 @@ class DatabaseSeeder extends Seeder
             'type' => 'promo',
             'due_date' => '2022-02-21',
             'market_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        for ($i = 1; $i < 51; $i++) {
+            DB::table('images')->insert([
+                'user_id' => null,
+                'product_id' => $i,
+                'content' => null,
+                'path' => 'storage/images/wortel.jpg',
+                'ext' => 'jpg',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
+        }
     }
 }

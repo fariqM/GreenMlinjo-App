@@ -16,13 +16,21 @@ class ProductController extends Controller
 
     public function promo_section()
     {
-        $products = ProductResource::collection(Product::inRandomOrder()->limit(4)->get());
-        return response(['success' => true, 'data' => $products]);
+        try {
+            $products = ProductResource::collection(Product::limit(4)->get());
+            return response(['success' => true, 'data' => $products]);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()]);
+        }
     }
 
     public function package($id)
     {
-        $products =  ProductResource::collection(Product::inRandomOrder()->limit(10)->get());
-        return response(['success' => true, 'data' => $products]);
+        try {
+            $products =  ProductResource::collection(Product::inRandomOrder()->limit(10)->get());
+            return response(['success' => true, 'data' => $products]);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()]);
+        }
     }
 }

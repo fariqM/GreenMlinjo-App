@@ -13,10 +13,10 @@ class FavouriteController extends Controller
     {
         try {
             $userid = $request->user()->id;
-            $myfavourite = Favourite::where('user_id', $userid)->count();
+            $myfavourite = Favourite::where('user_id', $userid)->get();
             return response(['success' => true, 'data' => $myfavourite]);
         } catch (\Throwable $e) {
-            return response(['success' => false, 'errors' => $e]);
+            return response(['success' => false, 'errors' => $e->getMessage()]);
         }
     }
 

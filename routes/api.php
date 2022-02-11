@@ -25,6 +25,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
         });
 
         Route::prefix('/products')->group(function(){
+            Route::get('promo-section', 'Api\ProductController@promo_section');
             Route::get('package/{id}', 'Api\ProductController@package');
         });
 
