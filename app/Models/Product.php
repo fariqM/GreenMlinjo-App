@@ -12,4 +12,8 @@ class Product extends Model
     public function favourites(){
         return $this->hasMany(Favourite::class);
     }
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

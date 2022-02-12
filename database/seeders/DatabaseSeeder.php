@@ -60,10 +60,10 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 1; $i < 51; $i++) {
             DB::table('images')->insert([
-                'user_id' => null,
-                'product_id' => $i,
+                'imageable_type' => 'App\Models\Product',
+                'imageable_id' => $i,
                 'content' => null,
-                'path' => 'storage/images/wortel.jpg',
+                'url' => 'storage/images/products/wortel.jpg',
                 'ext' => 'jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
