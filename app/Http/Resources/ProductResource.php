@@ -16,7 +16,9 @@ class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'favourites' => FavouriteResource::collection($this->whenLoaded('favourites')),
             'title' => $this->title,
+            'images' => ImageResource::collection($this->whenLoaded('images')),
             'unit' => $this->unit,
             'sub_unit' => $this->sub_unit,
             'description' => $this->description,
@@ -24,6 +26,8 @@ class ProductResource extends JsonResource
             'max_qty_per_unit' => $this->max_qty_per_unit,
             'min_price' => $this->min_price,
             'max_price' => $this->max_price,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

@@ -40,7 +40,7 @@ class ProductController extends Controller
                     ]);
                 })->get();
 
-            return response(['success' => true, 'data' => $products]);
+            return response(['success' => true, 'data' => ProductResource::collection($products)]);
         } catch (\Throwable $e) {
             return response(['success' => false, 'errors' => $e->getMessage()]);
         }

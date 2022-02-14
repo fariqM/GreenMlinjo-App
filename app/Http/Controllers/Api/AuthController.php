@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function inspeksi()
+    public function inspeksi(Request $req)
     {
-        return response(['success' => true]);
+        return response(['success' => true, 'client' => $req->user()]);
     }
 
     public function index(){
