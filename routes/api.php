@@ -24,11 +24,12 @@ Route::namespace('App\Http\Controllers')->group(function () {
     });
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::prefix('/a')->group(function () {
+        Route::prefix('/v1')->group(function () {
             Route::get('test', 'Api\ProductController@promo_section');
 
             Route::prefix('favourites')->group(function () {
                 Route::get('my-favourites', 'Api\FavouriteController@myfavourite');
+                Route::get('favourite-products', 'Api\FavouriteController@favouriteProducts');
                 Route::post('add-favourites', 'Api\FavouriteController@addfavourite');
             });
 

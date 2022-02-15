@@ -22,6 +22,10 @@ class User extends Authenticatable
         return $this->hasMany(Favourite::class);
     }
 
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
+    
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');

@@ -16,10 +16,20 @@ class FavouriteController extends Controller
     {
         try {
             $userid = $request->user()->id;
-            $myfavourite = Favourite::where('user_id', $userid)->get();
+            $myfavourite = Favourite::where('user_id', $userid)->orderBy('created_at', 'desc')->get();
             return response(['success' => true, 'data' => FavouriteResource::collection($myfavourite)]);
         } catch (\Throwable $e) {
-            return response(['success' => false, 'errors' => $e->getMessage()]);
+            return response(['success' => false, 'errors' => $e->getMessage()], 500);
+        }
+    }
+
+    public function favouriteProducts(){
+        try {
+            $userid = Auth::user()->id;
+            $favouriteProduct = Favourite::with('product.images')->where('user_id', $userid)->get();
+            return response(['success' => true, 'data' => $favouriteProduct]);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()], 500);
         }
     }
 
@@ -42,7 +52,7 @@ class FavouriteController extends Controller
                     ]);
                     return response(['success' => true, 'message' => 'added to favourite', 'data'=>$create], 201);
                 } catch (\Throwable $e) {
-                    return response(['success' => false, 'errors' => $e->getMessage()]);
+                    return response(['success' => false, 'errors' => $e->getMessage()], 500);
                 }
                 // return response(['success' => false, 'message bukan favorit', 'req' => $request->all()]);
             }
