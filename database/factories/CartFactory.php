@@ -17,6 +17,7 @@ class CartFactory extends Factory
         return [
             'user_id' =>  1,
             'product_id' =>  rand(1, 50),
+            'qty' => rand(1, 10),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ];

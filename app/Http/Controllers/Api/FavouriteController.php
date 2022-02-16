@@ -23,10 +23,11 @@ class FavouriteController extends Controller
         }
     }
 
-    public function favouriteProducts(){
+    public function favouriteProducts()
+    {
         try {
             $userid = Auth::user()->id;
-            $favouriteProduct = Favourite::with('product.images')->where('user_id', $userid)->get();
+            $favouriteProduct = Favourite::with('product.images')->where('user_id', $userid)->orderBy('created_at', 'desc')->get();
             return response(['success' => true, 'data' => $favouriteProduct]);
         } catch (\Throwable $e) {
             return response(['success' => false, 'errors' => $e->getMessage()], 500);
@@ -43,21 +44,30 @@ class FavouriteController extends Controller
             if ($isExist) {
                 $favId = $isExist->id;
                 $isExist->delete();
-                return response(['success' => true, 'message' => 'remove from favourite', 'data' =>$favId], 200);
+                return response(['success' => true, 'message' => 'remove from favourite', 'data' => $favId], 200);
             } else {
                 try {
                     $create = Favourite::create([
                         'user_id' => $userid,
                         'product_id' => $request->product_id
                     ]);
-                    return response(['success' => true, 'message' => 'added to favourite', 'data'=>$create], 201);
+                    return response(['success' => true, 'message' => 'added to favourite', 'data' => $create], 201);
                 } catch (\Throwable $e) {
                     return response(['success' => false, 'errors' => $e->getMessage()], 500);
                 }
-                // return response(['success' => false, 'message bukan favorit', 'req' => $request->all()]);
             }
         } else {
             return response(['success' => false, 'message' => 'Unauthorized'], 401);
+        }
+    }
+
+    public function removeFavourite(Favourite $favourite)
+    {
+        try {
+            $favourite->delete();
+            return response(['success' => true, 'message' => 'removed from favourite']);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()], 500);
         }
     }
 }

@@ -31,6 +31,13 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::get('my-favourites', 'Api\FavouriteController@myfavourite');
                 Route::get('favourite-products', 'Api\FavouriteController@favouriteProducts');
                 Route::post('add-favourites', 'Api\FavouriteController@addfavourite');
+                Route::delete('remove-favourite/{favourite:id}', 'Api\FavouriteController@removeFavourite');
+            });
+
+            Route::prefix('carts')->group(function(){
+                Route::get('my-carts', 'Api\CartController@mycarts');
+                Route::get('cart-products', 'Api\CartController@cartProducts');
+                Route::post('add-carts', 'Api\CartController@addcart');
             });
 
             Route::prefix('products')->group(function () {
