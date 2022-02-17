@@ -26,9 +26,12 @@ class CartController extends Controller
     {
         try {
             $userid = Auth::user()->id;
-            $cartProducts = DB::table('products')->join('carts', 'products.id', '=', 'carts.product_id')
-                ->select('products.*', 'carts.id as cart_id', 'qty')
-                ->where('carts.user_id', '=', $userid)->get();
+            $cartProducts = DB::table('products')
+                ->join('carts', 'products.id', '=', 'carts.product_id')
+                ->join('images', 'products.id', '=', 'images.imageable_id')
+                ->select('products.*', 'images.url', 'carts.id as cart_id', 'qty', )
+                ->where('carts.user_id', '=', $userid)
+                ->where('images.imageable_type', '=', 'App\Models\Product')->get();
             // $cartProducts = Cart::with('product.images')->where('user_id', $userid)->get();
             return response(['success' => true, 'data' => $cartProducts]);
         } catch (\Throwable $e) {
