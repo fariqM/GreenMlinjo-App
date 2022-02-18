@@ -29,9 +29,10 @@ class CartController extends Controller
             $cartProducts = DB::table('products')
                 ->join('carts', 'products.id', '=', 'carts.product_id')
                 ->join('images', 'products.id', '=', 'images.imageable_id')
-                ->select('products.*', 'images.url', 'carts.id as cart_id', 'qty', )
+                ->select('products.*', 'images.url', 'carts.id as cart_id', 'qty')
                 ->where('carts.user_id', '=', $userid)
-                ->where('images.imageable_type', '=', 'App\Models\Product')->get();
+                ->where('images.imageable_type', '=', 'App\Models\Product')
+                ->orderBy('carts.updated_at', 'desc')->get();
             // $cartProducts = Cart::with('product.images')->where('user_id', $userid)->get();
             return response(['success' => true, 'data' => $cartProducts]);
         } catch (\Throwable $e) {
@@ -69,6 +70,15 @@ class CartController extends Controller
             }
         } else {
             return response(['success' => false, 'message' => 'Unauthorized'], 401);
+        }
+    }
+
+    public function removeCart(Request $request){
+        try {
+            Cart::whereIn('id', $request->selected)->delete();
+            return response(['success' => true, 'message' => 'Deleted from cart.']);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()], 500);
         }
     }
 }

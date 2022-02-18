@@ -38,6 +38,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::get('my-carts', 'Api\CartController@mycarts');
                 Route::get('cart-products', 'Api\CartController@cartProducts');
                 Route::post('add-carts', 'Api\CartController@addcart');
+                Route::delete('remove-carts', 'Api\CartController@removeCart');
             });
 
             Route::prefix('products')->group(function () {
