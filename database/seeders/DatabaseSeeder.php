@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Cart::factory(10)->create();
         \App\Models\Market::factory(3)->create();
 
-
+        // categories
         DB::table('categories')->insert([
             'title' => 'Promo Kilat',
             'type' => 'promo',
@@ -58,6 +58,46 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        // vouchers
+        DB::table('vouchers')->insert([
+            'title' => 'Diskon Pengguna Baru',
+            'subtitle' => 'Potongan harga Rp 30.000 tanpa minimal pembelian',
+            'description' => 'Diskon pengguna baru',
+            'voucher_type' => 'product',
+            'discount' => 100,
+            'discount_type' => 'percent',
+            'max_value' => 30000,
+            'min_qty' => null,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('vouchers')->insert([
+            'title' => 'Gratis Ongkir Tanpa Syarat',
+            'subtitle' => 'Potongan biaya pengiriman tanpa minimal pembelian',
+            'description' => 'Diskon pengguna baru',
+            'voucher_type' => 'shipping',
+            'discount' => 10000,
+            'discount_type' => 'price',
+            'max_value' => null,
+            'min_qty' => null,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        // DB::table('vouchers')->insert([
+        //     'title' => 'Diskon pengguna baru',
+        //     'subtitle' => 'Potongan harga Rp 30.000 tanpa minimal pembelian',
+        //     'description' => 'Diskon pengguna baru',
+        //     'voucher_type' => 'product',
+        //     'discount' => 100,
+        //     'discount_type' => 'percent',
+        //     'max_value' => 30000,
+        //     'min_qty' => null,
+        //     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        //     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        // ]);
 
         for ($i = 1; $i < 51; $i++) {
             DB::table('images')->insert([
