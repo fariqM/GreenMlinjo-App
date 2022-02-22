@@ -24,9 +24,9 @@ class CreateOrdersTable extends Migration
             $table->foreignId('market_id')->nullable()->constrained();
             $table->string('address');
             $table->string('total_price');
-            $table->unsignedBigInteger('discount_voucher');
+            $table->unsignedBigInteger('discount_voucher')->nullable();
             $table->foreign('discount_voucher')->references('id')->on('vouchers');
-            $table->unsignedBigInteger('shipping_voucher');
+            $table->unsignedBigInteger('shipping_voucher')->nullable();
             $table->foreign('shipping_voucher')->references('id')->on('vouchers');
             $table->timestamps();
         });

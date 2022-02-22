@@ -81,4 +81,13 @@ class CartController extends Controller
             return response(['success' => false, 'errors' => $e->getMessage()], 500);
         }
     }
+
+    public function addjustCart(Cart $cart, Request $request){
+        if ($request->type) {
+           $cart->update(['qty' => $cart->qty+1]);
+        } else {
+           $cart->update(['qty' => $cart->qty-1]);
+        }
+        return response(['success' => true, 'data' => $cart, 'req' => $request->all()]);
+    }
 }

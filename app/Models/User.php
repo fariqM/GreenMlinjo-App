@@ -31,6 +31,14 @@ class User extends Authenticatable
         return $this->morphOne(Image::class, 'imageable');
     }
 
+    public function orders(){
+        return $this->hasMany(Order::class, 'costumer_id', 'id');
+    }
+
+    public function driver_orders(){
+        return $this->hasMany(Order::class, 'driver_id', 'id');
+    }
+
     protected $fillable = [
         'name',
         'email',

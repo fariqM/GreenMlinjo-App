@@ -25,7 +25,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('/v1')->group(function () {
-            Route::get('test', 'Api\ProductController@promo_section');
+            Route::post('test', 'Api\OrderController@makeOrder');
 
             Route::prefix('favourites')->group(function () {
                 Route::get('my-favourites', 'Api\FavouriteController@myfavourite');
@@ -39,11 +39,16 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::get('cart-products', 'Api\CartController@cartProducts');
                 Route::post('add-carts', 'Api\CartController@addcart');
                 Route::delete('remove-carts', 'Api\CartController@removeCart');
+                Route::post('adjust-qty/{cart:id}', 'Api\CartController@addjustCart');
             });
 
             Route::prefix('products')->group(function () {
                 Route::get('promo-section', 'Api\ProductController@promo_section');
                 Route::get('package/{id}', 'Api\ProductController@package');
+            });
+
+            Route::prefix('orders')->group(function(){
+                Route::post('make-order', 'Api\OrderController@makeOrder');
             });
 
             Route::get('inspect', 'Api\AuthController@inspeksi');
