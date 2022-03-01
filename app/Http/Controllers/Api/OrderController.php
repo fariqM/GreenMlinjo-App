@@ -10,8 +10,6 @@ class OrderController extends Controller
 {
     public function makeOrder(Request $request)
     {
-
-
         $order = Order::find(1);
         $data = [
             1 => ['qty' => 3],
@@ -19,5 +17,11 @@ class OrderController extends Controller
         ];
         $order->products()->attach($request->products);
         return response(['success' => true, 'data' => $data, 'req' => $request->products]);
+    }
+
+    public function prepareOrder(Request $request){
+
+
+        return response(['success' => true, 'req' => $request->all()]);
     }
 }
