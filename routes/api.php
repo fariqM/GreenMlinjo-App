@@ -53,6 +53,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             Route::get('get-my-address', 'Api\AddressController@index');
             Route::post('create-new-address', 'Api\AddressController@store');
+            Route::put('choose-address/{address:id}', 'Api\AddressController@chooseAddress');
             Route::get('inspect', 'Api\AuthController@inspeksi');
             Route::post('logout', 'Api\AuthController@logout');
         });

@@ -22,4 +22,17 @@ class AddressController extends Controller
         }
         return response(['success' => true]);
     }
+
+    public function chooseAddress(Address $address)
+    {
+        try {
+            if ($address->choosen == 0) {
+                Address::where('user_id', auth()->user()->id)->update(['choosen' => 0]);
+                $address->update(['choosen' => 1]);
+            }
+        } catch (\Throwable $th) {
+            return response(['success' => false, 'errors' => $th->getMessage()], 500);
+        }
+        return response(['success' => true]);
+    }
 }
