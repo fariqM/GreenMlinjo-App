@@ -51,6 +51,8 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::post('make-order', 'Api\OrderController@makeOrder');
             });
 
+            Route::get('get-my-address', 'Api\AddressController@index');
+            Route::post('create-new-address', 'Api\AddressController@store');
             Route::get('inspect', 'Api\AuthController@inspeksi');
             Route::post('logout', 'Api\AuthController@logout');
         });

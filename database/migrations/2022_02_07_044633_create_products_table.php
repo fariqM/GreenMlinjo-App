@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('unit');
             $table->string('sub_unit');
             $table->text('description');
-            $table->unsignedBigInteger('min_qty_per_unit');
-            $table->unsignedBigInteger('max_qty_per_unit');
+            $table->unsignedBigInteger('min_qty_per_unit')->nullable();
+            $table->unsignedBigInteger('max_qty_per_unit')->nullable();
             $table->unsignedBigInteger('min_price');
             $table->unsignedBigInteger('max_price');
             $table->timestamps();
