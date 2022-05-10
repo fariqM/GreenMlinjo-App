@@ -23,6 +23,7 @@ class CreateVouchersTable extends Migration
             $table->string('discount_type')->nullable();
             $table->integer('max_value')->nullable();
             $table->integer('min_qty')->nullable();
+            $table->date('exp');
             $table->timestamps();
         });
     }

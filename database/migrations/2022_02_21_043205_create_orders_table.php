@@ -22,12 +22,24 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('users');
             $table->foreignId('market_id')->nullable()->constrained();
-            $table->string('address');
+            $table->text('address');
+
+            $table->unsignedBigInteger('product_voucher_id')->nullable();
+            $table->foreign('product_voucher_id')->references('id')->on('vouchers');
+            $table->unsignedBigInteger('product_discount');
+
+            $table->unsignedBigInteger('shipping_voucher_id')->nullable();
+            $table->foreign('shipping_voucher_id')->references('id')->on('vouchers');
+            $table->unsignedBigInteger('shipping_discount');
+
+            $table->unsignedBigInteger('total_max_price');
+            $table->unsignedBigInteger('total_min_price');
             $table->string('total_price');
-            $table->unsignedBigInteger('discount_voucher')->nullable();
-            $table->foreign('discount_voucher')->references('id')->on('vouchers');
-            $table->unsignedBigInteger('shipping_voucher')->nullable();
-            $table->foreign('shipping_voucher')->references('id')->on('vouchers');
+            $table->string('payment_type');
+
+            $table->string('paid');
+
+           
             $table->timestamps();
         });
     }

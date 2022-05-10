@@ -65,10 +65,11 @@ class DatabaseSeeder extends Seeder
             'subtitle' => 'Potongan harga Rp 30.000 tanpa minimal pembelian',
             'description' => 'Diskon pengguna baru',
             'voucher_type' => 'product',
-            'discount' => 100,
+            'discount' => 15,
             'discount_type' => 'percent',
             'max_value' => 30000,
             'min_qty' => null,
+            'exp' => "2022-05-28",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -82,6 +83,7 @@ class DatabaseSeeder extends Seeder
             'discount_type' => 'price',
             'max_value' => null,
             'min_qty' => null,
+            'exp' => "2022-05-28",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

@@ -56,6 +56,8 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::put('choose-address/{address:id}', 'Api\AddressController@chooseAddress');
             Route::get('get-choosen-address', 'Api\AddressController@getChoosenAddress');
 
+            Route::get('get-vouchers', 'Api\OrderController@voucherIndex');
+
             Route::get('inspect', 'Api\AuthController@inspeksi');
             Route::post('logout', 'Api\AuthController@logout');
         });
