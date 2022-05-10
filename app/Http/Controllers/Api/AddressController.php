@@ -35,4 +35,10 @@ class AddressController extends Controller
         }
         return response(['success' => true]);
     }
+
+    public function getChoosenAddress()
+    {
+        $data = Address::where('user_id', auth()->user()->id)->where('choosen', 1)->firstOrFail();
+        return response(['success' => true, 'data' => $data]);
+    }
 }
