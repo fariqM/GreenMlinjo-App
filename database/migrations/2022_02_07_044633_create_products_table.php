@@ -21,8 +21,9 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->unsignedBigInteger('min_qty_per_unit')->nullable();
             $table->unsignedBigInteger('max_qty_per_unit')->nullable();
-            $table->unsignedBigInteger('min_price');
-            $table->unsignedBigInteger('max_price');
+            // $table->unsignedBigInteger('min_price');
+            // $table->unsignedBigInteger('max_price');
+            $table->unsignedBigInteger('price');
             $table->timestamps();
         });
     }

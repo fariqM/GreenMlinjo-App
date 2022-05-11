@@ -24,8 +24,9 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'min_qty_per_unit' => $this->min_qty_per_unit,
             'max_qty_per_unit' => $this->max_qty_per_unit,
-            'min_price' => $this->min_price,
-            'max_price' => $this->max_price,
+            'price' => $this->price,
+            // 'min_price' => $this->min_price,
+            // 'max_price' => $this->max_price,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

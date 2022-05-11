@@ -25,8 +25,9 @@ class ProductFactory extends Factory
             'description' =>  $this->faker->text(),
             'min_qty_per_unit' =>  $minqty,
             'max_qty_per_unit' =>  $maxqty,
-            'min_price' => $minprc,
-            'max_price' =>  $maxprc,
+            // 'min_price' => $minprc,
+            // 'max_price' =>  $maxprc,
+            'price' =>  $minprc,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ];

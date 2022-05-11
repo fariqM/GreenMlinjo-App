@@ -31,10 +31,10 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('shipping_voucher_id')->nullable();
             $table->foreign('shipping_voucher_id')->references('id')->on('vouchers');
             $table->unsignedBigInteger('shipping_discount');
-
-            $table->unsignedBigInteger('total_max_price');
-            $table->unsignedBigInteger('total_min_price');
-            $table->string('total_price');
+            $table->unsignedBigInteger('total_price');
+            // $table->unsignedBigInteger('total_max_price');
+            // $table->unsignedBigInteger('total_min_price');
+            // $table->string('total_price');
             $table->string('payment_type');
 
             $table->string('paid');
