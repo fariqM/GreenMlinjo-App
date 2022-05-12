@@ -13,6 +13,7 @@ class Order extends Model
         'uuid_key', //BE
         'customer_id',//BE
         'status', //BE
+        'status_code', //BE
         'driver_id', //BE
         'market_id',
         'address',

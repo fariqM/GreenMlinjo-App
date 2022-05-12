@@ -62,8 +62,8 @@ class DatabaseSeeder extends Seeder
         // vouchers
         DB::table('vouchers')->insert([
             'title' => 'Diskon Pengguna Baru',
-            'subtitle' => 'Potongan harga 15% tanpa minimal pembelian',
-            'description' => 'Voucher diskon pembelian 15%',
+            'subtitle' => 'Voucher diskon pembelian 15%',
+            'description' => 'Potongan harga 15% tanpa minimal pembelian, maksimal sampai dengan Rp30.000.',
             'voucher_type' => 'product',
             'discount' => 15,
             'discount_type' => 'percent',
@@ -76,8 +76,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('vouchers')->insert([
             'title' => 'Gratis Ongkir Tanpa Syarat',
-            'subtitle' => 'Potongan biaya pengiriman tanpa minimal pembelian',
-            'description' => 'Voucher diskon ongkir Rp10.000',
+            'subtitle' => 'Voucher diskon ongkir Rp10.000',
+            'description' => 'Potongan biaya pengiriman Rp10.000 untuk pengguna baru',
             'voucher_type' => 'shipping',
             'discount' => 10000,
             'discount_type' => 'price',

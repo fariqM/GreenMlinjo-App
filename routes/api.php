@@ -49,6 +49,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             Route::prefix('orders')->group(function(){
                 Route::post('make-order', 'Api\OrderController@makeOrder');
+                Route::get('get-last-order/{id}', 'Api\OrderController@getOrder');
             });
 
             Route::get('get-my-address', 'Api\AddressController@index');

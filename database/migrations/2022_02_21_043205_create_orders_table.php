@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('uuid_key');
             $table->unsignedBigInteger('customer_id');
             $table->string('status');
+            $table->unsignedBigInteger('status_code');
             $table->foreign('customer_id')->references('id')->on('users');
             $table->unsignedBigInteger('driver_id');
             $table->foreign('driver_id')->references('id')->on('users');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Voucher;
@@ -55,17 +56,23 @@ class OrderController extends Controller
                 'uuid_key' => $uuid,
                 'customer_id' => auth()->id(),
                 'status' => 'Memproses pesanan anda',
+                'status_code' => 1,
                 'driver_id' => auth()->id(),
             ]));
             // return response(['data' => $order]);
 
             foreach ($request->order_products as $key => $value) {
-                OrderProduct::create([
+                if (array_key_exists("Toyota", $value)) {
+                    $withNote = ['notes' => $value['notes']];
+                } else {
+                    $withNote = [];
+                }
+                OrderProduct::create(array_merge([
                     'order_id' => $order->id,
                     'product_id' => $value['id'],
                     'qty' => $value['qty'],
-                    'notes' => $value['notes'],
-                ]);
+                ], $withNote));
+                Cart::where('id', $value['cart_id'])->delete();
             }
         } catch (\Throwable $th) {
             return response(['success' => false, 'errors' => $th->getMessage()], 500);
@@ -74,10 +81,15 @@ class OrderController extends Controller
         return response(['success' => true, 'order' => $order->id]);
     }
 
+    public function getOrder($id)
+    {   
+        // return response($id);
+        $order = Order::where('id', $id)->with('orderProducts.product.images')->firstOrFail();
+        return response(['success' => true, 'data' => $order]);
+    }
+
     public function prepareOrder(Request $request)
     {
-
-
         return response(['success' => true, 'req' => $request->all()]);
     }
 
