@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('type')->nullable();
-            $table->date('due_date')->nullable();
+            // $table->date('due_date')->nullable();
             $table->unsignedBigInteger('market_id')->nullable();
             $table->foreign('market_id')->references('id')->on('markets')->onDelete('cascade');
             $table->timestamps();

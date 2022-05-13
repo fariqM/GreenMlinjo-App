@@ -45,6 +45,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::prefix('products')->group(function () {
                 Route::get('promo-section', 'Api\ProductController@promo_section');
                 Route::get('package/{id}', 'Api\ProductController@package');
+                Route::get('sedekah-product', 'Api\ProductController@paket_sedekah');
             });
 
             Route::prefix('orders')->group(function(){
@@ -61,6 +62,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             Route::get('inspect', 'Api\AuthController@inspeksi');
             Route::post('logout', 'Api\AuthController@logout');
+            
         });
     });
 

@@ -55,4 +55,14 @@ class ProductController extends Controller
             return response(['success' => false, 'errors' => $e->getMessage()]);
         }
     }
+
+    public function paket_sedekah(){
+        try {
+            $product = Product::where('name', 'like', '%Empon%')->where('category_id', 1)->with('images')->get();
+        } catch (\Throwable $th) {
+            return response(['success' => false, 'errors' => $th->getMessage()]);
+        }
+
+        return response(['success' => true, 'data' => $product]);
+    }
 }

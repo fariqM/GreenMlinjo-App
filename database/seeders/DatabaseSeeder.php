@@ -25,26 +25,31 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        \App\Models\User::factory(4)->create();
-        \App\Models\Product::factory(50)->create();
-        \App\Models\Favourite::factory(10)->create();
-        \App\Models\Cart::factory(10)->create();
         \App\Models\Market::factory(3)->create();
 
         // categories
         DB::table('categories')->insert([
+            'title' => 'Paket Sedekah',
+            'type' => 'promo',
+            // 'due_date' => '2022-02-21',
+            'market_id' => null,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('categories')->insert([
             'title' => 'Promo Kilat',
             'type' => 'promo',
-            'due_date' => '2022-02-21',
+            // 'due_date' => '2022-02-21',
             'market_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         DB::table('categories')->insert([
-            'title' => 'Promo Spesial',
+            'title' => 'Product Normal',
             'type' => 'promo',
-            'due_date' => '2022-02-21',
+            // 'due_date' => '2022-02-21',
             'market_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -53,11 +58,61 @@ class DatabaseSeeder extends Seeder
         DB::table('categories')->insert([
             'title' => 'Promo Ramadhan',
             'type' => 'promo',
-            'due_date' => '2022-02-21',
+            // 'due_date' => '2022-02-21',
             'market_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+
+        \App\Models\User::factory(4)->create();
+        \App\Models\Product::factory(50)->create();
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Sembako 1",
+            "category_id" => 1,
+            "description" => "Beras 2Kg, Minyak Goreng 1L, Gula 1Kg, Mie Instant 5 Bungkus.",
+            "price" => 70000,
+        ]);
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Sembako 2",
+            "category_id" => 1,
+            "description" => "Beras 5Kg, Minyak Goreng 2L, Gula 2Kg, Telur 1Kg, Mie Instant 10 Bungkus, Kecap 250Ml.",
+            "price" => 150000,
+        ]);
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Sayur 1",
+            "category_id" => 1,
+            "description" => "Terong, Manisa, Kacang Panjang, Bawang Merah, Bawang Putih, Cabe Merah Besar, Cabe Rawit, Kencur, Kemiri, Santan Kara.",
+            "price" => 15000,
+        ]);
+
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Empon 1",
+            "category_id" => 3,
+            "description" => "250 gram Jahe merah, 250 gram Kunyit, 250 gram Temukawak, 250 gram Kencur, 250 gram Sereh",
+            "price" => 40000,
+        ]);
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Empon 1",
+            "category_id" => 1,
+            "description" => "250 gram Jahe merah, 250 gram Kunyit, 250 gram Temukawak, 250 gram Kencur, 250 gram Sereh",
+            "price" => 40000,
+        ]);
+
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Empon 1",
+            "category_id" => 3,
+            "description" => "250 gram Jahe Gajah, 250 gram Kunyit, 250 gram Temukawak, 250 gram Kencur, 250 gram Sereh",
+            "price" => 50000,
+        ]);
+        \App\Models\Product::factory(1)->create([
+            "title" => "Paket Empon 1",
+            "category_id" => 1,
+            "description" => "250 gram Jahe Gajah, 250 gram Kunyit, 250 gram Temukawak, 250 gram Kencur, 250 gram Sereh",
+            "price" => 50000,
+        ]);
+
+        \App\Models\Favourite::factory(10)->create();
+        \App\Models\Cart::factory(10)->create();
 
         // vouchers
         DB::table('vouchers')->insert([
