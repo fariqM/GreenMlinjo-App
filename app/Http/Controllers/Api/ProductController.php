@@ -52,15 +52,15 @@ class ProductController extends Controller
             $products =  ProductResource::collection(Product::inRandomOrder()->limit(10)->get());
             return response(['success' => true, 'data' => $products]);
         } catch (\Throwable $e) {
-            return response(['success' => false, 'errors' => $e->getMessage()]);
+            return response(['success' => false, 'errors' => $e->getMessage()], 500);
         }
     }
 
     public function paket_sedekah(){
         try {
-            $product = Product::where('name', 'like', '%Empon%')->where('category_id', 1)->with('images')->get();
+            $product = Product::where('title', 'like', '%Paket%')->where('category_id', 1)->with('images')->get();
         } catch (\Throwable $th) {
-            return response(['success' => false, 'errors' => $th->getMessage()]);
+            return response(['success' => false, 'errors' => $th->getMessage()], 500);
         }
 
         return response(['success' => true, 'data' => $product]);

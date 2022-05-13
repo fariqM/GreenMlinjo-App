@@ -99,13 +99,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Product::factory(1)->create([
-            "title" => "Paket Empon 1",
+            "title" => "Paket Empon 2",
             "category_id" => 3,
             "description" => "250 gram Jahe Gajah, 250 gram Kunyit, 250 gram Temukawak, 250 gram Kencur, 250 gram Sereh",
             "price" => 50000,
         ]);
         \App\Models\Product::factory(1)->create([
-            "title" => "Paket Empon 1",
+            "title" => "Paket Empon 2",
             "category_id" => 1,
             "description" => "250 gram Jahe Gajah, 250 gram Kunyit, 250 gram Temukawak, 250 gram Kencur, 250 gram Sereh",
             "price" => 50000,
@@ -156,12 +156,24 @@ class DatabaseSeeder extends Seeder
         //     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         // ]);
 
-        for ($i = 1; $i < 51; $i++) {
+        for ($i = 1; $i < 58; $i++) {
+            if ($i === 54 || $i === 55) {
+                $url = 'storage/images/products/empon_3.jpg';
+            } else if ($i === 56 || $i === 57) {
+                $url = 'storage/images/products/empon4.webp';
+            } else if ($i === 51 || $i === 52) {
+                $url = 'storage/images/products/paket_sembako.jpg';
+            } else if ($i === 53) {
+                $url = 'storage/images/products/paket_sayur.jpg';
+            } else {
+                $url = 'storage/images/products/wortel.jpg';
+            }
+
             DB::table('images')->insert([
                 'imageable_type' => 'App\Models\Product',
                 'imageable_id' => $i,
                 'content' => null,
-                'url' => 'storage/images/products/wortel.jpg',
+                'url' => $url,
                 'ext' => 'jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
