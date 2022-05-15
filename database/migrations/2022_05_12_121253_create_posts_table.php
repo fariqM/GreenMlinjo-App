@@ -13,15 +13,15 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('owner');
-            $table->string('content');
-            $table->unsignedBigInteger('total_value');
+        // Schema::create('posts', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('title');
+        //     $table->string('owner');
+        //     $table->string('content');
+        //     $table->unsignedBigInteger('total_value');
             
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
     }
 
     /**
