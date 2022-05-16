@@ -60,6 +60,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             Route::prefix('blc')->group(function(){
                 Route::get('get-balance', "Api\BalanceController@getBalance");
+                Route::post('topup', "Api\BalanceController@topup");
             });
 
             Route::get('get-vouchers', 'Api\OrderController@voucherIndex');

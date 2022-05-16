@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'mlinjo',
             'email' => 'mlinjo@gmail.com',
-            'phone' => '1123123123',
+            'phone' => '082745556772',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
@@ -155,6 +155,13 @@ class DatabaseSeeder extends Seeder
         //     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         //     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         // ]);
+
+        DB::table('balances')->insert([
+            'user_id' => 1,
+            'balance' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
 
         for ($i = 1; $i < 58; $i++) {
             if ($i === 54 || $i === 55) {
