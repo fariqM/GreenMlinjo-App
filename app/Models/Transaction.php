@@ -10,8 +10,8 @@ class Transaction extends Model
     use HasFactory;
     
     protected $fillable =[
-        'uuid',
-        'user_id',
+        'uuid', //BE
+        'user_id', //BE
         'title',
         'description',
         'amount',

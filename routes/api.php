@@ -51,6 +51,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::prefix('orders')->group(function(){
                 Route::post('make-order', 'Api\OrderController@makeOrder');
                 Route::get('get-last-order/{id}', 'Api\OrderController@getOrder');
+                Route::put('confirm/{order:id}', 'Api\OrderController@confirmOrder');
             });
 
             Route::get('get-my-address', 'Api\AddressController@index');
@@ -61,6 +62,11 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::prefix('blc')->group(function(){
                 Route::get('get-balance', "Api\BalanceController@getBalance");
                 Route::post('topup', "Api\BalanceController@topup");
+                Route::post('purchase', 'Api\BalanceController@purchase');
+            });
+
+            Route::prefix('transaction')->group(function(){
+                Route::post('make', 'Api\TransactionController@make');
             });
 
             Route::get('get-vouchers', 'Api\OrderController@voucherIndex');

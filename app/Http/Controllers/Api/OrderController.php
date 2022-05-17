@@ -56,7 +56,7 @@ class OrderController extends Controller
                 'uuid_key' => $uuid,
                 'customer_id' => auth()->id(),
                 'status' => 'Memproses pesanan anda',
-                'status_code' => 1,
+                'status_code' => 0,
                 'driver_id' => auth()->id(),
             ]));
             // return response(['data' => $order]);
@@ -78,7 +78,12 @@ class OrderController extends Controller
             return response(['success' => false, 'errors' => $th->getMessage()], 500);
         }
 
-        return response(['success' => true, 'order' => $order->id]);
+        return response([
+            'success' => true, 
+            'order' => $order->id, 
+            'uuid' => $order->uuid,
+            'total_price' => $order->total_price
+        ]);
     }
 
     public function getOrder($id)
@@ -86,6 +91,17 @@ class OrderController extends Controller
         // return response($id);
         $order = Order::where('id', $id)->with('orderProducts.product.images')->firstOrFail();
         return response(['success' => true, 'data' => $order]);
+    }
+
+    public function confirmOrder(Order $order){
+        try {
+            $order->update([
+                'status' => 'Pesanan telah sampai',
+                'status_code' => 5,
+            ]);
+        } catch (\Throwable $th) {
+            return response(['success' => false, 'errors' => $th->getMessage()], 500);
+        }
     }
 
     public function prepareOrder(Request $request)
