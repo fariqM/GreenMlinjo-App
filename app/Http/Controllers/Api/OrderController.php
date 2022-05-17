@@ -46,6 +46,12 @@ class OrderController extends Controller
         }
     }
 
+    public function index()
+    {
+        $data = Order::where('customer_id', auth()->id())->with('orderProducts.product.images')->orderBy('created_at', 'desc')->get();
+        return response(['success' => true, 'data' => $data]);
+    }
+
     public function makeOrder(Request $request)
     {
         // return response($request->all());
@@ -79,21 +85,22 @@ class OrderController extends Controller
         }
 
         return response([
-            'success' => true, 
-            'order' => $order->id, 
+            'success' => true,
+            'order' => $order->id,
             'uuid' => $order->uuid,
             'total_price' => $order->total_price
         ]);
     }
 
     public function getOrder($id)
-    {   
+    {
         // return response($id);
         $order = Order::where('id', $id)->with('orderProducts.product.images')->firstOrFail();
         return response(['success' => true, 'data' => $order]);
     }
 
-    public function confirmOrder(Order $order){
+    public function confirmOrder(Order $order)
+    {
         try {
             $order->update([
                 'status' => 'Pesanan telah sampai',
