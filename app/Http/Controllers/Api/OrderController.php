@@ -104,7 +104,7 @@ class OrderController extends Controller
         try {
             $order->update([
                 'status' => 'Pesanan telah sampai',
-                'status_code' => 5,
+                'status_code' => 4,
             ]);
         } catch (\Throwable $th) {
             return response(['success' => false, 'errors' => $th->getMessage()], 500);

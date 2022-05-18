@@ -186,5 +186,10 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
         }
+        DB::table('infaqs')->insert([
+            'collected' => 6500000,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
     }
 }

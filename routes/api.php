@@ -72,6 +72,9 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             Route::get('get-vouchers', 'Api\OrderController@voucherIndex');
 
+            Route::get('get-infaq', 'Api\InfaqController@infaq');
+            Route::put('add-infaq', 'Api\InfaqController@addInfaq');
+
             Route::get('inspect', 'Api\AuthController@inspeksi');
             Route::post('logout', 'Api\AuthController@logout');
             
