@@ -20,13 +20,14 @@ class ProductFactory extends Factory
         $maxprc = $minprc + rand(1000, 10000);
         return [
             'title' =>  $this->faker->company(),
-            'unit' =>  'Kg',
+            'unit' =>  'kg',
             'sub_unit' =>  'pcs',
             'description' =>  $this->faker->text(),
             'min_qty_per_unit' =>  $minqty,
             'max_qty_per_unit' =>  $maxqty,
             // 'min_price' => $minprc,
             // 'max_price' =>  $maxprc,
+            'market_id' => 1,
             'category_id' => 3,
             'price' =>  $minprc,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

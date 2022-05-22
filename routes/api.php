@@ -21,7 +21,10 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::prefix('/products')->group(function () {
         Route::get('promo-section', 'Api\ProductController@promo_section');
         Route::get('package/{id}', 'Api\ProductController@package');
+        Route::get('product-terlaris/{market_id}', 'Api\ProductController@produk_terlaris');
     });
+
+    Route::get("markets-index", 'Api\MarketController@index');
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('/v1')->group(function () {
@@ -46,6 +49,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::get('promo-section', 'Api\ProductController@promo_section');
                 Route::get('package/{id}', 'Api\ProductController@package');
                 Route::get('sedekah-product', 'Api\ProductController@paket_sedekah');
+                Route::get('product-terlaris/{market_id}', 'Api\ProductController@produk_terlaris');
             });
 
             Route::prefix('orders')->group(function(){
@@ -83,5 +87,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     Route::get('users', 'Api\AuthController@index');
     Route::post('login', 'Api\AuthController@login');
+    Route::post('register', 'Api\AuthController@register');
     Route::get('products',  'Api\ProductController@index');
 });

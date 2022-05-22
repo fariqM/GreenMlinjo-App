@@ -17,6 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('market_id')->nullable();
+            $table->foreign('market_id')->references('id')->on('markets')->onDelete('cascade');
             $table->string('title');
             $table->string('unit');
             $table->string('sub_unit');

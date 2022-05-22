@@ -13,6 +13,6 @@ class Category extends Model
         'title', 
         'type', 
         'due_date', 
-        'market_id', 
+        // 'market_id', 
     ];
 }

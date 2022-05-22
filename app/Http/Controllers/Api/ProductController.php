@@ -46,6 +46,34 @@ class ProductController extends Controller
         }
     }
 
+    public function produk_terlaris($market_id){
+        try {
+            $products =  Product::query()
+                ->when(Auth::check(), function ($query) {
+                    $query->with([
+                        'favourites' => function ($hasMany) {
+                            $hasMany->where('user_id', Auth::user()->id);
+                        },
+                        'images'
+                    ]);
+                })
+                // will exclude all rows but flag the relation as loaded
+                // and therefore add an empty collection as relation
+                ->when(Auth::guest(), function ($query) {
+                    $query->with([
+                        'favourites' => function ($hasMany) {
+                            $hasMany->whereRaw('1 = 0');
+                        },
+                        'images'
+                    ]);
+                })->Where('market_id', $market_id)->where('category_id', 3)->get()->random(6);
+
+            return response(['success' => true, 'data' => ProductResource::collection($products)]);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()]);
+        }
+    }
+
     public function package($id)
     {
         try {
