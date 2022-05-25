@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function test_api(){
+        return response(["success" => true, 'data' => 'Hei its illegal !']);
+    }
+
     public function index()
     {
         return response(['data' => Product::get()]);

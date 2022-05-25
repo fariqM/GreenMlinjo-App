@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::namespace('App\Http\Controllers')->group(function () {
-    Route::get('test', 'Api\ProductController@promo_section');
+    Route::get('test', 'Api\ProductController@test_api');
 
     Route::prefix('/products')->group(function () {
         Route::get('promo-section', 'Api\ProductController@promo_section');
