@@ -58,7 +58,8 @@ class ProductController extends Controller
                         'favourites' => function ($hasMany) {
                             $hasMany->where('user_id', Auth::user()->id);
                         },
-                        'images'
+                        'images',
+                        'product_category'
                     ]);
                 })
                 // will exclude all rows but flag the relation as loaded
@@ -68,9 +69,40 @@ class ProductController extends Controller
                         'favourites' => function ($hasMany) {
                             $hasMany->whereRaw('1 = 0');
                         },
-                        'images'
+                        'images',
+                        'product_category'
                     ]);
                 })->Where('market_id', $market_id)->where('category_id', 3)->get()->shuffle();
+
+            return response(['success' => true, 'data' => ProductResource::collection($products)]);
+        } catch (\Throwable $e) {
+            return response(['success' => false, 'errors' => $e->getMessage()]);
+        }
+    }
+
+    public function recom_products($market_id, $product_category_id){
+        try {
+            $products =  Product::query()
+                ->when(Auth::check(), function ($query) {
+                    $query->with([
+                        'favourites' => function ($hasMany) {
+                            $hasMany->where('user_id', Auth::user()->id);
+                        },
+                        'images',
+                        'product_category'
+                    ]);
+                })
+                // will exclude all rows but flag the relation as loaded
+                // and therefore add an empty collection as relation
+                ->when(Auth::guest(), function ($query) {
+                    $query->with([
+                        'favourites' => function ($hasMany) {
+                            $hasMany->whereRaw('1 = 0');
+                        },
+                        'images',
+                        'product_category'
+                    ]);
+                })->Where('market_id', $market_id)->where('product_category_id', $product_category_id)->get();
 
             return response(['success' => true, 'data' => ProductResource::collection($products)]);
         } catch (\Throwable $e) {

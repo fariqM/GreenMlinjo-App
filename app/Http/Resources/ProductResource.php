@@ -16,6 +16,7 @@ class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'product_category' =>$this->whenLoaded('product_category'),
             'favourites' => FavouriteResource::collection($this->whenLoaded('favourites')),
             'title' => $this->title,
             'images' => ImageResource::collection($this->whenLoaded('images')),

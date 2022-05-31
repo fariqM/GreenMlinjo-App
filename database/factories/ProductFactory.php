@@ -25,6 +25,7 @@ class ProductFactory extends Factory
             'description' =>  $this->faker->text(),
             'min_qty_per_unit' =>  $minqty,
             'max_qty_per_unit' =>  $maxqty,
+            'product_category_id' => null,
             // 'min_price' => $minprc,
             // 'max_price' =>  $maxprc,
             'market_id' => 1,

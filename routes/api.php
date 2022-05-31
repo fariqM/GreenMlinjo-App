@@ -22,6 +22,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::get('promo-section', 'Api\ProductController@promo_section');
         Route::get('package/{id}', 'Api\ProductController@package');
         Route::get('product-terlaris/{market_id}', 'Api\ProductController@produk_terlaris');
+        Route::get('recom/{market_id}/{product_category_id}', 'Api\ProductController@recom_products');
     });
 
     Route::get("markets-index", 'Api\MarketController@index');
@@ -50,6 +51,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::get('package/{id}', 'Api\ProductController@package');
                 Route::get('sedekah-product', 'Api\ProductController@paket_sedekah');
                 Route::get('product-terlaris/{market_id}', 'Api\ProductController@produk_terlaris');
+                Route::get('recom/{market_id}/{product_category_id}', 'Api\ProductController@recom_products');
             });
 
             Route::prefix('orders')->group(function(){
