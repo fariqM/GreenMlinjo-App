@@ -70,7 +70,7 @@ class ProductController extends Controller
                         },
                         'images'
                     ]);
-                })->Where('market_id', $market_id)->where('category_id', 3)->get()->random(6);
+                })->Where('market_id', $market_id)->where('category_id', 3)->get()->shuffle();
 
             return response(['success' => true, 'data' => ProductResource::collection($products)]);
         } catch (\Throwable $e) {
