@@ -17,7 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->float('qty')->nullable();
+            $table->unsignedBigInteger('qty')->nullable();
             $table->timestamps();
         });
     }
