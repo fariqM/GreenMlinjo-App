@@ -34,7 +34,11 @@ class CartController extends Controller
                 ->where('images.imageable_type', '=', 'App\Models\Product')
                 ->orderBy('carts.updated_at', 'desc')->get();
             // $cartProducts = Cart::with('product.images')->where('user_id', $userid)->get();
-            return response(['success' => true, 'data' => $cartProducts]);
+            
+            
+            return response()->json(['success' => true, 'data' => $cartProducts], 200, [],JSON_NUMERIC_CHECK);
+            
+            // return response(['success' => true, 'data' => $cartProducts]);
         } catch (\Throwable $e) {
             return response(['success' => false, 'errors' => $e->getMessage()], 500);
         }
